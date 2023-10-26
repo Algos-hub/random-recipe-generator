@@ -1,5 +1,7 @@
 "use strict";
 
+// Assigning constants
+
 const recipe = document.querySelector(".recipe");
 const overlay = document.querySelector(".overlay");
 const btnCloseRecipe = document.querySelector(".close-recipe");
@@ -11,58 +13,9 @@ const listItem = document.querySelector(".list");
 const countryRecipe = document.querySelector(".country");
 const recipeSteps = document.querySelector(".steps");
 
-const openModal = (data) => {
-  recipe.classList.remove("hidden");
-  overlay.classList.remove("hidden");
-  const recipeName = data.strMeal;
-  const imgURL = data.strMealThumb;
-  const YT = data.strYoutube.slice(-11);
-  const instructions = data.strInstructions.replaceAll("\r\n", "<br/>");
-  const country = data.strArea;
-  thumbnail.src = imgURL;
-  youtubeURL.src = `https://www.youtube.com/embed/${YT}`;
-  title.textContent = recipeName;
-  for (let i = 1; i <= 20; i++) {
-    if (
-      data[`strIngredient${i}`] !== "" &&
-      data[`strIngredient${i}`] !== null
-    ) {
-      listItem.innerHTML += `<li> ${data[`strIngredient${i}`]} : ${
-        data[`strMeasure${i}`]
-      }</li>`;
-    }
-  }
-  recipeSteps.innerHTML = instructions;
-  countryRecipe.innerHTML = `(${country})`;
-};
+// Functions
 
-const closeModal = () => {
-  recipe.classList.add("hidden");
-  overlay.classList.add("hidden");
-};
-
-for (let i = 0; i < btnsGenerateRecipe.length; i++) {
-  btnsGenerateRecipe[i].addEventListener("click", function () {
-    getData();
-  });
-}
-
-btnCloseRecipe.addEventListener("click", function () {
-  closeModal();
-  document.querySelector(".list").innerHTML = "";
-});
-
-overlay.addEventListener("click", function () {
-  closeModal();
-  document.querySelector(".list").innerHTML = "";
-});
-
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape" && !recipe.classList.contains("hidden")) {
-    closeModal();
-    document.querySelector(".list").innerHTML = "";
-  }
-});
+// Fetching API data
 
 function getJSON(url, errorMsg = "Something went wrong!") {
   return fetch(url).then((res) => {
@@ -78,9 +31,82 @@ const getData = async () => {
     const data = await Promise.all([
       getJSON(`https://www.themealdb.com/api/json/v1/1/random.php`),
     ]);
-    openModal(data[0].meals[0]);
+    openRecipe(data[0].meals[0]);
     return data[0].meals[0];
   } catch (error) {
     console.log(error);
   }
 };
+
+function openRecipe(data) {
+  // Picking and assigning relevant data from API response: type Object
+
+  const recipeName = data.strMeal;
+  const imgURL = data.strMealThumb;
+  const YT = data.strYoutube.slice(-11);
+  const instructions = data.strInstructions.replaceAll("\r\n", "<br/>");
+  const country = data.strArea;
+
+  // Rendering
+
+  // Uncover popup and overlay
+  recipe.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+
+  // Render data
+
+  thumbnail.src = imgURL;
+  youtubeURL.src = `https://www.youtube.com/embed/${YT}`;
+  title.textContent = recipeName;
+  recipeSteps.innerHTML = instructions;
+  countryRecipe.innerHTML = country;
+
+  // Scrolling and filtering relevant data from strIngredient1 to strIngredient20
+
+  for (let i = 1; i <= 20; i++) {
+    if (
+      data[`strIngredient${i}`] !== "" &&
+      data[`strIngredient${i}`] !== null
+    ) {
+      listItem.innerHTML += `<li> ${data[`strIngredient${i}`]} : ${
+        data[`strMeasure${i}`]
+      }</li>`;
+    }
+  }
+}
+
+// Hide popup and overlay
+
+function closeRecipe() {
+  recipe.classList.add("hidden");
+  overlay.classList.add("hidden");
+}
+
+// Assigning actions to buttons
+
+//Open popup
+
+for (let i = 0; i < btnsGenerateRecipe.length; i++) {
+  btnsGenerateRecipe[i].addEventListener("click", function () {
+    getData();
+  });
+}
+
+//Close popup
+
+btnCloseRecipe.addEventListener("click", function () {
+  closeRecipe();
+  listItem.innerHTML = "";
+});
+
+overlay.addEventListener("click", function () {
+  closeRecipe();
+  listItem.innerHTML = "";
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && !recipe.classList.contains("hidden")) {
+    closeRecipe();
+    listItem.innerHTML = "";
+  }
+});
