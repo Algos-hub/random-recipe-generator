@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("4357397.jpg");
+  font-family: sans-serif;
+  color: #333;
+  line-height: 1.5;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+}
+
+.generate-recipe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.75rem 3.5rem;
+  border: none;
+  background-color: #c52d2f;
+  color: white;
+  border-radius: 10rem;
+  cursor: pointer;
+  box-shadow: 0 3px 15px rgba(1, 1, 1, 0.5);
+}
+
+.close-recipe {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  font-size: 5vw;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.catch {
+  display: flex;
+  justify-content: space-between;
+  max-width: fit-content;
+}
+
+@media (max-width: 900px) {
+  .catch {
+    display: unset;
+    justify-content: space-between;
+    max-width: fit-content;
+  }
+}
+
+.country {
+  font-size: calc(15px + 0.390625vw);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: start;
+}
+
+h1 {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translate(-50%);
+
+  font-size: calc(15px + 0.390625vw);
+  margin-bottom: 2rem;
+  color: #000;
+}
+
+iframe {
+  height: 25vw;
+  width: 44.44vw;
+  margin-top: 10px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  border-radius: 15px;
+  box-shadow: 0 3px 15px rgba(1, 1, 1, 0.5);
+}
+
+@media (max-width: 900px) {
+  iframe {
+    height: 28.13vw;
+    width: 50vw;
+    margin-top: 10px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(1, 1, 1, 0.5);
+  }
+}
+
+.thumbnail {
+  display: flex;
+  width: 25vw;
+  height: 25vw;
+  border-radius: 15px;
+  box-shadow: 0 3px 15px rgba(1, 1, 1, 0.5);
+  margin-left: 1vw;
+  margin-top: 10px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .thumbnail {
+    display: unset;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(1, 1, 1, 0.5);
+    margin-left: 1vw;
+    margin-top: 10px;
+    align-items: start;
+  }
+}
+
+h2 {
+  font-size: calc(20px + 0.390625vw);
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ingredients,
+.instructions {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.recipe {
+  position: absolute;
+  margin-top: 25px;
+  width: 80%;
+
+  background-color: rgba(256, 256, 256, 0.5);
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.ingredients {
+  float: left;
+  margin-left: 3.5vw;
+  font-size: calc(15px + 0.390625vw);
+}
+
+.list {
+  font-size: calc(15px + 0.390625vw);
+  text-align: start;
+}
+
+.instructions {
+  float: right;
+  text-align: end;
+  margin-right: 2.5vw;
+  font-size: calc(15px + 0.390625vw);
+  max-width: 30vw;
+}
+
+@media (max-width: 900px) {
+  .instructions {
+    max-width: fit-content;
+  }
+}
+.steps {
+  font-size: calc(15px + 0.390625vw);
+}

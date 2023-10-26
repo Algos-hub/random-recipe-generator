@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Random Meal Generator</title>
+  </head>
+  <body style="background-color: #2d2013">
+    <button class="generate-recipe">Get random recipe</button>
+    <div class="recipe hidden">
+      <button class="close-recipe">&times;</button>
+      <h1 class="title"></h1>
+      <div class="country"></div>
+      <div class="catch">
+        <img class="thumbnail" src="" alt="Recipe Title" />
+        <iframe
+          class="youtube"
+          width="496"
+          height="279"
+          src="https://www.youtube.com/embed/"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+      <div class="ingredients">
+        <h2>Ingredients</h2>
+        <ul class="list"></ul>
+      </div>
+      <div class="instructions">
+        <h2>Instructions</h2>
+        <div class="steps"></div>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
